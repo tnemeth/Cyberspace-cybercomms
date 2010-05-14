@@ -48,7 +48,6 @@ static int read_bytes(int socket_fd, unsigned char * data, int size)
 {
         int total = 0;
 
-        tracelog("Waiting for %d byte(s)...\n", size);
         while (total < size)
         {
                 /*
@@ -63,7 +62,6 @@ static int read_bytes(int socket_fd, unsigned char * data, int size)
                 }
                 total += nb_read;
         }
-        tracelog("got %d bytes.\n", total);
 
         return total;
 }
@@ -103,7 +101,6 @@ int packet_read(int socket_fd, unsigned char * data, int size)
          *      pour mettre dans la zone fournie.
          */
         packet_size = ((data[1] << 8) | data[0]);
-        tracelog("Requested data size: %d\n", packet_size);
         read_size = (packet_size > (size - PACKET_LEN_SIZE)
                         ? (size - PACKET_LEN_SIZE)
                         : packet_size);

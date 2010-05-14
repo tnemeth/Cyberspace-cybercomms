@@ -1,0 +1,4 @@
+\section intro Introduction
+  The <b>lib#LIBRARY#</b> library is a library that
+  <u>makes things (NEED DESCRIPTION HERE)</u>.
+

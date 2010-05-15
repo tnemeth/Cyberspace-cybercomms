@@ -397,3 +397,136 @@ int accept_connection(int socket_server, int timeout)
         return sock_fd;
 }
 
+
+/**
+ *  \brief Socket remote hostname function.
+ *
+ *        This function gets the remote hostname of the given socket. A NULL
+ *        value for a char * parameter makes this parameter information not
+ *        returned.
+ *
+ * @param fd                    socket to analyse
+ * @param name                  hostname of the remote machine
+ * @param len                   maximum length for storing the hostname
+ * @return                      the status of the operation
+ * @retval SUCCESS              all information found
+ * @retval -ERR_NOT_FOUND       at least one of the information is not found
+ */
+int socket_remote_host(int fd, char * name, int len)
+{
+        struct sockaddr_in info;
+#ifdef OpenBSD
+        int                infolen;
+#else
+        socklen_t          infolen;
+#endif
+
+        infolen = sizeof(info);
+        if (getpeername(fd, (struct sockaddr *) &info, &infolen) != 0)
+        {
+                return -ERR_NOT_FOUND;
+        }
+        if (name)
+        {
+                struct hostent * machine = gethostbyaddr((char *)&info.sin_addr,
+                                                         sizeof(info.sin_addr),
+                                                         info.sin_family);
+                if (machine == NULL)
+                {
+                        return -ERR_NOT_FOUND;
+                }
+
+                strncpy(name, machine->h_name, len);
+        }
+        return SUCCESS;
+}
+
+
+/**
+ *  \brief Socket remote IP address function.
+ *
+ *        This function gets the remote IP address of the given socket. A NULL
+ *        value for a char * parameter makes this parameter information not
+ *        returned.
+ *
+ * @param fd                    socket to analyse
+ * @param addr                  IP address of the remote machine
+ * @param len                   maximum length for storing the IP address
+ * @return                      the status of the operation
+ * @retval SUCCESS              all information found
+ * @retval -ERR_NOT_FOUND       at least one of the information is not found
+ */
+int socket_remote_ip(int fd, char * addr, int len)
+{
+        struct sockaddr_in info;
+#ifdef OpenBSD
+        int                infolen;
+#else
+        socklen_t          infolen;
+#endif
+
+        infolen = sizeof(info);
+        if (getpeername(fd, (struct sockaddr *) &info, &infolen) != 0)
+        {
+                return -ERR_NOT_FOUND;
+        }
+        if (addr)
+        {
+                strncpy(addr, inet_ntoa(info.sin_addr), len);
+        }
+        return SUCCESS;
+}
+
+
+/**
+ *  \brief Socket remote port information function.
+ *
+ *        This function returns the remote port ofthe given socket.
+ *
+ * @param fd                    socket to analyse
+ * @return                      the remote port of the socket or -ERR_NOT_FOUND
+ *                              in case of error
+ */
+int socket_remote_port(int fd)
+{
+        struct sockaddr_in info;
+#ifdef OpenBSD
+        int                infolen;
+#else
+        socklen_t          infolen;
+#endif
+
+        infolen = sizeof(info);
+        if (getpeername(fd, (struct sockaddr *) &info, &infolen) != 0)
+        {
+                return -ERR_NOT_FOUND;
+        }
+        return ntohs(info.sin_port);
+}
+
+
+/**
+ *  \brief Socket local port information function.
+ *
+ *        This function returns the local port of the given socket.
+ *
+ * @param fd                    socket to analyse
+ * @return                      the local port of the socket or -ERR_NOT_FOUND
+ *                              in case of error
+ */
+int socket_local_port(int fd)
+{
+        struct sockaddr_in info;
+#ifdef OpenBSD
+        int                infolen;
+#else
+        socklen_t          infolen;
+#endif
+
+        infolen = sizeof(info);
+        if (getsockname(fd, (struct sockaddr *) &info, &infolen) != 0)
+        {
+                return -ERR_NOT_FOUND;
+        }
+        return ntohs(info.sin_port);
+}

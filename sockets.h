@@ -21,14 +21,14 @@
 
 /** @cond DUPLICATE_DOCUMENTATION */
 int open_socket(int port, char *ip_address, struct sockaddr_in *ptr_address);
-
 int connect_server(const char *machine, int port);
-
 int install_server(int port, char *ip_address, struct sockaddr_in *ptr_address);
-
 int wait_timeout(int fd, int timeout);
-
 int accept_connection(int socket_server, int timeout);
+int socket_remote_host(int fd, char * name, int len);
+int socket_remote_ip(int fd, char * addr, int len);
+int socket_remote_port(int fd);
+int socket_local_port(int fd);
 /** @endcond */
 
 

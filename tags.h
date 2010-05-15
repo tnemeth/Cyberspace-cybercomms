@@ -60,6 +60,7 @@
  */
 
 
+#define CMD_DISCONNECT      0x00
 #define CMD_GET_PARAM       0x01
 #define CMD_SET_PARAM       0x02
 #define CMD_ADD_OBJECT      0x03

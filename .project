@@ -27,7 +27,7 @@ PREFIX=/usr/local
 #
 #   Project cross-compilation tool.
 #
-CROSS_COMPILE=
+#CROSS_COMPILE=
 
 
 #

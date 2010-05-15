@@ -59,14 +59,14 @@
  *  @{
  */
 
-
-#define CMD_DISCONNECT      0x00
+#define CMD_NOOP            0x00
 #define CMD_GET_PARAM       0x01
 #define CMD_SET_PARAM       0x02
 #define CMD_ADD_OBJECT      0x03
 #define CMD_DEL_OBJECT      0x04
 #define CMD_LOAD_CONFIG     0x05
 #define CMD_SAVE_CONFIG     0x06
+#define CMD_DISCONNECT      0x0D
 
 #define PACKET_MSG_ACK      0xFA  /*!< Acknowledge message from server.     */
 #define PACKET_MSG_NACK     0xFB  /*!< Acknowledge message from server.     */

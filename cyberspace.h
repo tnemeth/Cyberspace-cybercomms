@@ -21,6 +21,7 @@
 #include "sockets.h"
 #include "packets.h"
 #include "tags.h"
+#include "xmem.h"
 
 /**
  *  \brief cyty Cyberspace communication data types.

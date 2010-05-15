@@ -20,7 +20,7 @@
 #include <netinet/in.h>
 
 /** @cond DUPLICATE_DOCUMENTATION */
-int open_socket(int port, char *ip_address, struct sockaddr_in *ptr_address);
+int socket_open(int port, char *ip_address, struct sockaddr_in *ptr_address);
 int connect_server(const char *machine, int port);
 int install_server(int port, char *ip_address, struct sockaddr_in *ptr_address);
 int wait_timeout(int fd, int timeout);

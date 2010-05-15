@@ -87,7 +87,7 @@ static int inet_aton_local(char *padr, struct in_addr *ia)
  * @retval -ERR_UNKNOWN_ADDRESS         could not find host (machine/IP address)
  * @retval -ERR_BIND_SOCKET             could not bind the socket to the address
  */
-int open_socket(int port, char *ip_address, struct sockaddr_in *ptr_address)
+int socket_open(int port, char *ip_address, struct sockaddr_in *ptr_address)
 {
         int                 sock_fd;
         unsigned int        len_addr = sizeof(struct sockaddr_in);
@@ -223,7 +223,7 @@ int connect_server(const char *machine, int port)
         /*
          *      Communication socket creation -- indifferent port
          */
-        sock_fd = open_socket(0, NULL, (struct sockaddr_in *)&client_addr);
+        sock_fd = socket_open(0, NULL, (struct sockaddr_in *)&client_addr);
         if (sock_fd < 0)
         {
                 return sock_fd;
@@ -269,7 +269,7 @@ int connect_server(const char *machine, int port)
  */
 int install_server(int port, char *ip_address, struct sockaddr_in *ptr_address)
 {
-        int sock_fd = open_socket(port, ip_address, ptr_address);
+        int sock_fd = socket_open(port, ip_address, ptr_address);
 
         if (sock_fd < 0)
         {

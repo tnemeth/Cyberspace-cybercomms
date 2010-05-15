@@ -47,11 +47,11 @@
  *                                                     & {\em S->C} & {\em Data} \\
  *  \hline
  *  \hline
- *  Disconnect message & Shutdown     & 0xFF &      & X    & \\
- *  \hline
  *  Acknowledge        & Acknowledge  & 0xFA &      & X    & \\
  *  \hline
- *  Error message      & Error        & 0xEF &      & X    & X \\
+ *  Not Acknowledge    & Not Acknowledge & 0xFA &      & X    & \\
+ *  \hline
+ *  Error message      & Error        & 0xFF &      & X    & X \\
  *  \hline
  *  \end{tabular}
  *  \endlatexonly
@@ -59,11 +59,17 @@
  *  @{
  */
 
-#define PACKET_SHUTDOWN_CMD 0xFF  /*!< Shutdown order from MAID                */
 
-#define PACKET_MSG_ACK      0xFA  /*!< Acknowledge message from MAID.          */
+#define CMD_GET_PARAM       0x01
+#define CMD_SET_PARAM       0x02
+#define CMD_ADD_OBJECT      0x03
+#define CMD_DEL_OBJECT      0x04
+#define CMD_LOAD_CONFIG     0x05
+#define CMD_SAVE_CONFIG     0x06
 
-#define PACKET_MSG_ERROR    0xEF  /*!< Error message.                          */
+#define PACKET_MSG_ACK      0xFA  /*!< Acknowledge message from server.     */
+#define PACKET_MSG_NACK     0xFB  /*!< Acknowledge message from server.     */
+#define PACKET_MSG_ERROR    0xFF  /*!< Error message.                       */
 
 /** @} */
 

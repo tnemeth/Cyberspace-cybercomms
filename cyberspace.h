@@ -28,6 +28,9 @@
  *  @{
  */
 
+#define LEN_NAME        30      /*!< Maximum length for a name. */
+#define LEN_IPADDR      16      /*!< Maximum length for an IP address. */
+
 /*! Types of client that can connect to the cyberspace system server. */
 typedef enum {client_god, client_probe, client_ship} client_type;
 
@@ -35,7 +38,8 @@ typedef enum {client_god, client_probe, client_ship} client_type;
 
 
 /** @cond DUPLICATE_DOCUMENTATION */
-int cyberspace_connect(const char * machine, int port, client_type user);
+int cyberspace_connect(const char * machine, int port, client_type user, const char * name);
+int cyberspace_transmit(int fd, int tag, unsigned char * data, int len);
 /** @endcond */
 
 #endif /* CYBERSPACE_H */

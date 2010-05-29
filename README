@@ -1,0 +1,10 @@
+CYBERCOMMS
+
+        This project is a communication library for the cyberspace
+        environment. It contains the functions needed to communicate
+        between the server (cybersystem) and the clients (cybergod,
+        cyberprobe and cybership).
+
+        It can also contain all the shared functions between these
+        projects.
+

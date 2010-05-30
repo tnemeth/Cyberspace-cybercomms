@@ -29,7 +29,7 @@
  */
 
 #define LEN_NAME        30      /*!< Maximum length for a name. */
-#define LEN_IPADDR      16      /*!< Maximum length for an IP address. */
+#define LEN_IPADDR      50      /*!< Maximum length for an IPv6 address + port. */
 
 /*! Types of client that can connect to the cyberspace system server. */
 typedef enum {client_god, client_probe, client_ship} client_type;

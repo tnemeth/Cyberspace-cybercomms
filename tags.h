@@ -67,6 +67,7 @@
 #define CMD_LOAD_CONFIG     0x05
 #define CMD_SAVE_CONFIG     0x06
 #define CMD_DUMP_STATE      0x07
+#define CMD_SET_SELECTION   0x08
 #define CMD_DISCONNECT      0x0D
 
 #define PACKET_MSG_ACK      0xFA  /*!< Acknowledge message from server.     */
